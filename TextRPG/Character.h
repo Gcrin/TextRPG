@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Item.h"
+#include "Shop.h"
 
 class Character
 {
@@ -22,6 +23,7 @@ public:
     void addExperience(int exp);
     void addItem(std::unique_ptr<Item> item);
     void useItem(int index);
+    void sellItem(int index, Shop& shop);
 
     void displayInventory() const;
 

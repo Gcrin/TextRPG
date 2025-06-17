@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <iostream>
 
+#include "Shop.h"
+
 void Character::displayStatus() const
 {
     std::cout << "\n--- 캐릭터 상태 ---\n"
@@ -41,6 +43,17 @@ void Character::useItem(int index)
     if (index >= 0 && index < inventory.size())
     {
         inventory[index]->use(*this);
+        inventory.erase(inventory.begin() + index);
+    }
+}
+
+void Character::sellItem(int index, Shop& shop)
+{
+    if (index >= 0 && index < inventory.size())
+    {
+        int sellPrice = static_cast<int>(inventory[index]->getPrice() * 0.6);
+        std::cout << inventory[index]->getName() << " 을(를) " << sellPrice << " Gold에 판매했습니다.\n";
+        addGold(sellPrice);
         inventory.erase(inventory.begin() + index);
     }
 }
