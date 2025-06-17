@@ -9,14 +9,7 @@
 class Character
 {
 public:
-    static Character& getInstance(const std::string& name = "")
-    {
-        static Character instance(name);
-        return instance;
-    }
-
-    Character(const Character&) = delete;
-    void operator=(const Character&) = delete;
+    Character(std::string name);
 
     void displayStatus() const;
     void takeDamage(int damage);
@@ -30,7 +23,9 @@ public:
     bool hasItem() const { return !inventory.empty(); }
     int getLevel() const { return level; }
     int getAttack() const { return attack; }
+    int getHealth() const { return currentHealth; }
     int getGold() const { return gold; }
+    int getExperience() const { return experience; }
     std::string getName() const { return name; }
     const std::vector<std::unique_ptr<Item>>& getInventory() const { return inventory; }
 
@@ -40,7 +35,6 @@ public:
     void heal(int amount);
 
 private:
-    Character(std::string name);
     void levelUp();
 
     std::string name;

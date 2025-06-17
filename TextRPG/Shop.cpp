@@ -1,4 +1,4 @@
-#include "Shop.h"
+﻿#include "Shop.h"
 #include <iostream>
 
 #include "AttackBoost.h"
@@ -57,4 +57,9 @@ void Shop::sellItem(int itemIndex, Character& character)
     }
 
     character.sellItem(itemIndex - 1, *this);
+}
+
+size_t Shop::getItemCount() const
+{
+    return items.size();
 }
