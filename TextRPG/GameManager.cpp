@@ -1,4 +1,5 @@
 ﻿#include "GameManager.h"
+#include "Utils.h"
 #include <iostream>
 
 void GameManager::run()
@@ -19,7 +20,11 @@ void GameManager::createPlayer()
     std::getline(std::cin, name);
     system("cls");
     player = std::make_unique<Character>(name);
+
+    Utils::setConsoleColor(EColor::LightCyan); // 하늘
     std::cout << "\n[" << name << "] 캐릭 생성 완료!\n";
+    Utils::setConsoleColor(EColor::White); // 하양
+
     player->displayStatus();
 }
 
@@ -69,7 +74,7 @@ std::unique_ptr<Monster> GameManager::createMonster()
     case 2:
         return std::make_unique<Orc>(level);
     case 3:
-        return std::make_unique<Troll>(level);
+        return std::make_unique<Skeleton>(level);
     case 4:
         return std::make_unique<Slime>(level);
     default:
@@ -81,8 +86,13 @@ void GameManager::startBattle()
 {
     auto monster = createMonster();
     printTitle("전투 시작");
+
+    Utils::setConsoleColor(EColor::Red); // 빨강
     std::cout << "몬스터 " << monster->getName() << " 등장! "
         << "체력: " << monster->getHealth() << ", 공격력: " << monster->getAttack() << "\n\n";
+    Utils::setConsoleColor(EColor::White); // 하양
+
+    Utils::drawMonsterArt(monster->getName());
 
     //전투 부분
     while (player->getHealth() > 0 && !monster->isDead())
@@ -112,8 +122,11 @@ void GameManager::startBattle()
         // 플레이어 공격
         int playerAttack = player->getAttack();
         monster->takeDamage(playerAttack);
+
+        Utils::setConsoleColor(EColor::Green); // 초록
         std::cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격합니다! "
             << monster->getName() << " 체력: " << monster->getHealth() << "\n";
+        Utils::setConsoleColor(EColor::White); // 하양
 
         if (monster->isDead()) break;
 
@@ -121,15 +134,20 @@ void GameManager::startBattle()
         int monsterAttack = monster->getAttack();
         int playerHealthBefore = player->getHealth();
         player->takeDamage(monsterAttack);
+
+		Utils::setConsoleColor(EColor::Red); // 빨강
         std::cout << monster->getName() << "이(가) " << player->getName() << "을(를) 공격합니다! "
             << player->getName() << " 체력: " << playerHealthBefore << " -> " << player->getHealth() << "\n";
+		Utils::setConsoleColor(EColor::White); // 하양
     }
 
     //전투 종료 승리자 확인
     printSeparator();
     if (monster->isDead())
     {
+        Utils::setConsoleColor(EColor::Magenta); // 보라
         std::cout << "\n*** " << monster->getName() << " 처치! 전투에서 승리했습니다! ***\n";
+        Utils::setConsoleColor(EColor::White); // 하양
 
         if (dynamic_cast<BossMonster*>(monster.get()))
         {
@@ -179,8 +197,7 @@ void GameManager::visitShop()
         std::cout << "\n무엇을 하시겠습니까?\n"
             << "1. 아이템 구매\n"
             << "2. 아이템 판매\n"
-            << "3. 상점 나가기\n"
-            << "선택: ";
+            << "3. 상점 나가기\n";
 
         int input = getInputRangeInt(1, 3);
 

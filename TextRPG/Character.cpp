@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 
+#include "Utils.h"
 #include "Shop.h"
 
 void Character::displayStatus() const
@@ -98,9 +99,13 @@ void Character::levelUp()
         maxHealth += level * 20;
         attack += level * 5;
         currentHealth = maxHealth;
+
+        Utils::setConsoleColor(EColor::LightYellow); // 밝은 노랑
         std::cout << "\n*** 레벨업! ***\n"
             << name << "이(가) 레벨 " << level << "이(가) 되었습니다!\n"
             << "최대 체력과 공격력이 상승하고, 체력이 모두 회복되었습니다.\n";
+        Utils::setConsoleColor(EColor::White); // 하양
+
     }
     displayStatus();
 }

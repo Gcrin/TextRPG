@@ -29,7 +29,7 @@ protected:
 class Goblin : public Monster
 {
 public:
-    Goblin(int playerLevel) : Monster("고블린", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
+    Goblin(int playerLevel) : Monster("Goblin", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
                                       Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
     {
     }
@@ -38,16 +38,16 @@ public:
 class Orc : public Monster
 {
 public:
-    Orc(int playerLevel) : Monster("오크", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
+    Orc(int playerLevel) : Monster("Orc", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
                                    Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
     {
     }
 };
 
-class Troll : public Monster
+class Skeleton : public Monster
 {
 public:
-    Troll(int playerLevel) : Monster("트롤", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
+    Skeleton(int playerLevel) : Monster("Skeleton", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
                                      Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
     {
     }
@@ -56,7 +56,7 @@ public:
 class Slime : public Monster
 {
 public:
-    Slime(int playerLevel) : Monster("슬라임", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
+    Slime(int playerLevel) : Monster("Slime", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
                                      Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
     {
     }
@@ -64,7 +64,7 @@ public:
 class BossMonster : public Monster {
 public:
     BossMonster(int playerLevel)
-        : Monster("보스 드래곤", 
+        : Monster("Dragon", 
                   Utils::getRandomInt(static_cast<int>(playerLevel * 20 * 1.5), static_cast<int>(playerLevel * 30 * 1.5)), 
                   Utils::getRandomInt(static_cast<int>(playerLevel * 5 * 1.5), static_cast<int>(playerLevel * 10 * 1.5))) {}
     
