@@ -160,7 +160,7 @@
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="TextRPG.cpp" />
-    <ClCompile Include="ui.utils.cpp" />
+    <ClCompile Include="ui_utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
