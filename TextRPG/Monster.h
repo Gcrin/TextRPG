@@ -3,7 +3,8 @@
 #include <string>
 using namespace std;
 
-class Monster {
+class Monster 
+{
 protected:
     string name;
     int health;
@@ -19,27 +20,32 @@ public:
     virtual void takeDamage(int damage);
 };
 
-class Goblin : public Monster {
+class Goblin : public Monster 
+{
 public:
     Goblin(int level);
 };
 
-class Orc : public Monster {
+class Orc : public Monster 
+{
 public:
     Orc(int level);
 };
 
-class Skeleton : public Monster {
+class Skeleton : public Monster 
+{
 public:
     Skeleton(int level);
 };
 
-class Slime : public Monster {
+class Slime : public Monster 
+{
 public:
     Slime(int level);
 };
 
-class Boss : public Monster {
+class Boss : public Monster 
+{
 public:
     Boss(int level);
 };

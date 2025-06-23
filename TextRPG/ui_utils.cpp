@@ -7,13 +7,15 @@
 
 #endif
 
-void setConsoleColor(int color) {
+void setConsoleColor(int color) 
+{
 #ifdef _WIN32
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 #endif
 }
 
-void clearConsole() {
+void clearConsole() 
+{
 #ifdef _WIN32
     system("cls");
 #else
@@ -21,8 +23,10 @@ void clearConsole() {
 #endif
 }
 
-void drawMonsterArt(const std::string& name) {
-    if (name == "Goblin") {
+void drawMonsterArt(const std::string& name) 
+{
+    if (name == "Goblin") 
+    {
         std::cout << R"(
             /(.-""-.)\
         |\  \/      \/  /|
