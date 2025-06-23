@@ -1,6 +1,1 @@
-
-int main()
-{
-    
-    return 0;
-}
+#include "GameManager.h"
