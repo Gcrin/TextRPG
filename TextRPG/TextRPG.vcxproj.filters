@@ -13,10 +13,90 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Monster">
+      <UniqueIdentifier>{dcf23ff2-af7d-44c9-80fd-97f3685eaab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Monster">
+      <UniqueIdentifier>{10644fdc-6214-4155-9470-c68d8289c008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Items">
+      <UniqueIdentifier>{a342cea7-0826-4feb-a4d8-6598adf719bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Items">
+      <UniqueIdentifier>{cbce8e38-7e40-4ac4-8e10-43510fc44aac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TextRPG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Troll.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Orc.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.h">
+      <Filter>Header Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackBoost.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Troll.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackBoost.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
