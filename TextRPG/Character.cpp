@@ -9,14 +9,14 @@ using namespace std;
 unique_ptr<Character> Character::instance = nullptr;
 
 Character::Character() : name(""), level(1), health(200), maxHealth(200),
-attack(30), experience(0), gold(0)
+attack(30), experience(0), gold(0), additionalAttackAmount(0)
 {
 
 }
 
 Character::Character(const string& characterName)
     : name(characterName), level(1), health(200), maxHealth(200),
-    attack(30), experience(0), gold(0)
+    attack(30), experience(0), gold(0), additionalAttackAmount(0)
 {
 
 }

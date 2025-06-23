@@ -68,6 +68,7 @@ void GameManager::startGame()
     {
         // 몬스터 생성 및 전투
         currentMonster = generateMonster(player->getLevel());
+        // 전투 로직
         battle(player, currentMonster.get());
 
         if (!player->isAlive())
