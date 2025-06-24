@@ -11,14 +11,17 @@ class GameManager
 {
 private:
     std::unique_ptr<Shop> shop;
-    std::mt19937 randomEngine;
     int monstersKillCount;
+    bool isGameRunning;
 
     void MainLoop(Character* player);
     void BossBattle(Character* player);
-    
+    bool AutoItemUse(Character* player);
+    void TurnBasedCombat(Character* player, Monster* monster);
+    void ClearConsole();
 public:
     GameManager();
+    ~GameManager();
     void Run();
     
     std::unique_ptr<Monster> GenerateMonster(int level);
