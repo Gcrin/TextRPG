@@ -2,7 +2,8 @@
 #include "Character.h"
 #include <iostream>
 
-HealthPotion::HealthPotion() : Name("HealthPotion"), HealthRestore(50), Price(30)
+HealthPotion::HealthPotion() 
+	: Item(ItemID::HealthPotion,"HealthPotion", 30), HealthRestore(100)
 {
 }
 
@@ -14,7 +15,7 @@ void HealthPotion::Use(Character* character)
 		return;
 	}
 	
-	std::cout << this->GetName() << "사용!!!";
+	std::cout << this->GetName() << "~~~";
 	character->RestoreHealth(HealthRestore);
 }
 
