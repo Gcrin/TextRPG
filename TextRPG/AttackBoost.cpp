@@ -2,14 +2,15 @@
 #include "Character.h"
 #include <iostream>
 
-AttackBoost::AttackBoost() : Name("AttackBoost"), AttackIncrease(10), Price(50)
+AttackBoost::AttackBoost()
+	: Item(ItemID::AttackBoost, "AttackBoost", 50), AttackIncrease(10), Price(50)
 {
 
 }
 
 void AttackBoost::Use(Character* character)
 {
-	std::cout << this->GetName() << "사용!!!";
+	std::cout << this->GetName() << "!!!";
 	character->IncreaseAttack(AttackIncrease);
 }
 
