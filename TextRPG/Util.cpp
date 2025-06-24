@@ -1,8 +1,7 @@
 #include "Util.h"
 #include <random>
-#include <chrono>
 
-namespace RandomUitl
+namespace RandomUtil
 {
     std::mt19937& GetEngine()
     {
