@@ -6,14 +6,23 @@ class Item;
 
 class Monster
 {
+protected:
+    std::string Name;
+    int Health;
+    int Attack;
+    int Experience;
+
 public:
+    Monster(std::string name, int health, int attack, int experience);
     virtual ~Monster() = default;
 
-    virtual std::string GetName() const = 0;
-    virtual int GetHealth() const = 0;
-    virtual int GetAttack() const = 0;
-    virtual void TakeDamage(int damage) = 0;
+    virtual void TakeDamage(int damage);
     virtual std::unique_ptr<Item> DropItem() = 0;
     virtual int GetGold()  = 0;
-    virtual int GetExperience() const = 0;
+
+    virtual std::string GetName() const { return Name; }
+    virtual int GetHealth() const { return Health; }
+    virtual int GetAttack() const { return Attack; }
+    virtual int GetExperience() const { return Experience; }
+
 };

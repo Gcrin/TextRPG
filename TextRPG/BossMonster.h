@@ -3,20 +3,12 @@
 
 class BossMonster : public Monster
 {
-private:
-	std::string Name;
-	int Health;
-	int Attack;
-
 public:
 	BossMonster(int level);
 	~BossMonster() override = default;
 
-	std::string GetName() override { return Name; }
-	int GetHealth() override { return Health; }
-	int GetAttack() override { return Attack; }
+	std::unique_ptr<Item> DropItem() override;
+	int GetGold()  override;
 
-	void TakeDamage(int damage) override;
-	Item* DropItem() override;
 
 };
