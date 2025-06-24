@@ -92,16 +92,16 @@ void GameManager::startBattle()
         << "체력: " << monster->getHealth() << ", 공격력: " << monster->getAttack() << "\n\n";
     Utils::setConsoleColor(EColor::White); // 하양
 
-    Utils::drawMonsterArt(monster->getName());
-
     //전투 부분
     while (player->getHealth() > 0 && !monster->isDead())
     {
+        Utils::drawMonsterArt(monster->getName());
         printSeparator();
         std::cout << "1. 공격\n";
         std::cout << "2. 아이템 사용\n";
         int input = getInputRangeInt(1, 2);
 
+        bool isItemUsed = false;
         if (input == 2)
         {
             if (player->hasItem())
@@ -112,6 +112,7 @@ void GameManager::startBattle()
                 if (itemChoice > 0)
                 {
                     player->useItem(itemChoice - 1); // useItem 내부에서 사용 메시지 출력
+                    isItemUsed = true;
                 }
             }
             else
@@ -119,26 +120,31 @@ void GameManager::startBattle()
                 std::cout << "사용할 아이템이 없습니다! 공격을 선택합니다.\n";
             }
         }
-        // 플레이어 공격
-        int playerAttack = player->getAttack();
-        monster->takeDamage(playerAttack);
 
-        Utils::setConsoleColor(EColor::Green); // 초록
-        std::cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격합니다! "
-            << monster->getName() << " 체력: " << monster->getHealth() << "\n";
-        Utils::setConsoleColor(EColor::White); // 하양
+        if (!isItemUsed)
+        {
+            // 플레이어 공격
+            int playerAttack = player->getAttack();
+            monster->takeDamage(playerAttack);
 
-        if (monster->isDead()) break;
+            Utils::setConsoleColor(EColor::Green); // 초록
+            std::cout << player->getName() << "이(가) " << monster->getName() << "을(를) 공격합니다! "
+                << monster->getName() << " 체력: " << monster->getHealth() << "\n";
+            Utils::setConsoleColor(EColor::White); // 하양
+
+            if (monster->isDead()) break;
+            isItemUsed = false;
+        }
 
         // 몬스터 공격
         int monsterAttack = monster->getAttack();
         int playerHealthBefore = player->getHealth();
         player->takeDamage(monsterAttack);
 
-		Utils::setConsoleColor(EColor::Red); // 빨강
+        Utils::setConsoleColor(EColor::Red); // 빨강
         std::cout << monster->getName() << "이(가) " << player->getName() << "을(를) 공격합니다! "
             << player->getName() << " 체력: " << playerHealthBefore << " -> " << player->getHealth() << "\n";
-		Utils::setConsoleColor(EColor::White); // 하양
+        Utils::setConsoleColor(EColor::White); // 하양
     }
 
     //전투 종료 승리자 확인
@@ -203,6 +209,7 @@ void GameManager::visitShop()
 
         if (input == 1)
         {
+            shop.displayShopItems();
             std::cout << "구매할 아이템 번호를 선택하세요 (취소: 0): ";
             int buyInput = getInputRangeInt(0, shop.getItemCount());
             if (buyInput > 0)
@@ -232,6 +239,8 @@ void GameManager::visitShop()
             std::cout << "상점에서 나왔습니다.\n";
             break;
         }
+
+        system("cls");
     }
 }
 

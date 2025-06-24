@@ -17,17 +17,11 @@ void Shop::displayShop(Character& character) const
     std::cout << "어서오세요! 무엇을 도와드릴까요?\n";
     std::cout << "보유 골드: " << character.getGold() << " Gold\n\n";
 
-    std::cout << "--- 판매 아이템 ---\n";
-    for (size_t i = 0; i < items.size(); ++i)
-    {
-        std::cout << i + 1 << ". " << items[i]->getName()
-            << " (" << items[i]->getPrice() << " Gold)\n";
-    }
-    std::cout << "\n";
 }
 
 void Shop::buyItem(int itemIndex, Character& character)
 {
+    displayShopItems();
     if (itemIndex < 1 || itemIndex > items.size())
     {
         std::cout << "잘못된 번호입니다.\n";
@@ -62,4 +56,15 @@ void Shop::sellItem(int itemIndex, Character& character)
 size_t Shop::getItemCount() const
 {
     return items.size();
+}
+
+void Shop::displayShopItems() const
+{
+    std::cout << "--- 판매 아이템 ---\n";
+    for (size_t i = 0; i < items.size(); ++i)
+    {
+        std::cout << i + 1 << ". " << items[i]->getName()
+            << " (" << items[i]->getPrice() << " Gold)\n";
+    }
+    std::cout << "\n";
 }
