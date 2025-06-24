@@ -1,19 +1,24 @@
 #include "Monster.h"
-#include <stdlib.h>
-#include <time.h>
+#include "AttackBoost.h"
+#include "HealthPotion.h"
 
+Monster::Monster(std::string name, int health, int attack) : name(std::move(name)), currentHealth(health), attack(attack) {}
 
-Goblin::Goblin(int level)
+void Monster::takeDamage(int damage)
 {
-	srand(time(NULL));
-	health = level * ((rand() % 11) + 20);
-	attack = level * ((rand() % 6) + 5);
+    currentHealth -= damage;
+    currentHealth = std::max(currentHealth, 0);
 }
 
-string Goblin::getName() { return name; }
-int Goblin::getHealth() { return health; }
-int Goblin::getAttack() { return attack; }
-void Goblin::takeDamage(int damage)
+std::unique_ptr<Item> Monster::dropItem()
 {
-	health = health - damage;
+    if (Utils::getRandomInt(1, 100) <= 30)
+    {
+        if (Utils::getRandomInt(0, 1) == 0)
+        {
+            return std::make_unique<HealthPotion>();
+        }
+        return std::make_unique<AttackBoost>();
+    }
+    return nullptr;
 }

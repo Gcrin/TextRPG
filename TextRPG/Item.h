@@ -1,34 +1,21 @@
 #pragma once
+#include <memory>
 #include <string>
-#include "Character.h"
 
 class Character;
-
-
-using namespace std;
 
 class Item
 {
 public:
-	virtual string getName() = 0;
-	virtual void use(Character* character) = 0;
-	virtual ~Item() {}
-};
+    Item(std::string name, int price) : name(std::move(name)), price(price) {}
+    virtual ~Item() = default;
 
-class HealthPotion : public Item
-{
-public:
-	string name = "HealthPotion";
-	int healthRestore = 50;
-	string getName() override;
-	void use(Character* character) override;
-};
+    std::string getName() const { return name; }
+    int getPrice() const { return price; }
 
-class AttackBoost : public Item
-{
-public:
-	string name = "AttackBoost";
-	int AttackIncrease;
-	string getName() override;
-	void use(Character* character) override;
+    virtual void use(Character& character) = 0;
+    virtual std::unique_ptr<Item> clone() const = 0;
+protected:
+    std::string name;
+    int price;
 };

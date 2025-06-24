@@ -1,18 +1,20 @@
 #pragma once
-#include "Item.h"
-#include <string>
+#include <memory>
 #include <vector>
-#include <Character.h>
 
-using namespace std;
+class Character;
+class Item;
 
 class Shop
 {
 public:
-    vector<Item*> availableItems;
-
     Shop();
-    void displayItem();
-    void buyItem(int index, Character* player);
-    void sellItem(int index, Character* player);
+
+    void displayShop(Character& character) const;
+    void buyItem(int itemIndex, Character& character);
+    void sellItem(int itemIndex, Character& character);
+    size_t getItemCount() const;
+
+private:
+    std::vector<std::unique_ptr<Item>> items;
 };
