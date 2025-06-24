@@ -1,14 +1,13 @@
 ﻿#pragma once
 #include <memory>
 #include <string>
-#include "Utils.h"
 
 class Item;
 
 class Monster
 {
 public:
-    Monster(std::string name, int health, int attack);
+    Monster(std::string name, int playerLevel, float attackMultiplier = 1.f, float healthMultiplier = 1.f);
     virtual ~Monster() = default;
 
     void takeDamage(int damage);
@@ -29,8 +28,7 @@ protected:
 class Goblin : public Monster
 {
 public:
-    Goblin(int playerLevel) : Monster("고블린", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
-                                      Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
+    Goblin(int playerLevel) : Monster("고블린",playerLevel)
     {
     }
 };
@@ -38,8 +36,7 @@ public:
 class Orc : public Monster
 {
 public:
-    Orc(int playerLevel) : Monster("오크", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
-                                   Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
+    Orc(int playerLevel) : Monster("오크", playerLevel)
     {
     }
 };
@@ -47,8 +44,7 @@ public:
 class Troll : public Monster
 {
 public:
-    Troll(int playerLevel) : Monster("트롤", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
-                                     Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
+    Troll(int playerLevel) : Monster("트롤", playerLevel)
     {
     }
 };
@@ -56,19 +52,23 @@ public:
 class Slime : public Monster
 {
 public:
-    Slime(int playerLevel) : Monster("슬라임", Utils::getRandomInt(playerLevel * 20, playerLevel * 30),
-                                     Utils::getRandomInt(playerLevel * 5, playerLevel * 10))
+    Slime(int playerLevel) : Monster("슬라임", playerLevel)
     {
     }
 };
-class BossMonster : public Monster {
+
+class BossMonster : public Monster
+{
 public:
     BossMonster(int playerLevel)
-        : Monster("보스 드래곤", 
-                  Utils::getRandomInt(static_cast<int>(playerLevel * 20 * 1.5), static_cast<int>(playerLevel * 30 * 1.5)), 
-                  Utils::getRandomInt(static_cast<int>(playerLevel * 5 * 1.5), static_cast<int>(playerLevel * 10 * 1.5))) {}
-    
-    std::unique_ptr<Item> dropItem() override { // 보스는 아이템 드랍 안함 (게임 클리어)
+        : Monster("보스 드래곤",
+                  playerLevel, 1.5f, 1.5f)
+    {
+    }
+
+    std::unique_ptr<Item> dropItem() override
+    {
+        // 보스는 아이템 드랍 안함 (게임 클리어)
         return nullptr;
     }
 };
