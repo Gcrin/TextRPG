@@ -1,4 +1,4 @@
-#include "Shop.h"
+ï»¿#include "Shop.h"
 #include "AttackBoost.h"
 #include "HealthPotion.h"
 #include "Character.h"
@@ -17,12 +17,19 @@ Shop::~Shop()
 
 void Shop::DisplayItems() const
 {
-	std::cout << "-----»óÇ° ¸ñ·Ï-----\n";
+	std::cout << "-----ìƒí’ˆ ëª©ë¡-----\n";
+
+	if (AvailableItems.empty())
+	{
+		"íŒë§¤í•˜ëŠ” ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.\n";
+		return;
+	}
+
 	for (int i = 0; i < AvailableItems.size(); i++)
 	{
-		const auto& item = AvailableItems[i];
-		std::cout << "»óÇ°¹øÈ£ : " << i << ", »óÇ°¸í : " << item->GetName()
-			<< ", °¡°Ý : " << item->GetPrice() << '\n';
+		const std::unique_ptr<Item>& item = AvailableItems[i];
+		std::cout << "ìƒí’ˆë²ˆí˜¸ : " << i << ", ìƒí’ˆëª… : " << item->GetName()
+			<< ", ê°€ê²© : " << item->GetPrice() << '\n';
 	}
 }
 
@@ -30,7 +37,7 @@ void Shop::BuyItem(int index, Character* player)
 {
 	if (index < 0 || index >= AvailableItems.size())
 	{
-		std::cout << "Àß¸øµÈ »óÇ° ¹øÈ£ÀÔ´Ï´Ù.\n";
+		std::cout << "ìž˜ëª»ëœ ìƒí’ˆ ë²ˆí˜¸ìž…ë‹ˆë‹¤.\n";
 		return;
 	}
 
@@ -38,31 +45,31 @@ void Shop::BuyItem(int index, Character* player)
 
 	if (player->GetGold() < itemToBuy->GetPrice())
 	{
-		std::cout << "¼ÒÁö±ÝÀÌ ºÎÁ·ÇÕ´Ï´Ù.\n";
+		std::cout << "ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.\n";
 		return;
 	}
 	
 	if (player->SpendGold(itemToBuy->GetPrice()))
 	{
-		std::cout << itemToBuy->GetName() << "À» ±¸¸Å Çß½À´Ï´Ù.\n";
+		std::cout << itemToBuy->GetName() << "ì„ êµ¬ë§¤ í–ˆìŠµë‹ˆë‹¤.\n";
 		player->AddItem(itemToBuy->Clone());
 	}
 }
 
 void Shop::SellItem(int index, Character* player)
 {
-	const auto& inventory = player->GetInventory();
+	const std::vector<std::unique_ptr<Item>>& inventory = player->GetInventory();
 
 	if (index < 0 || index >= inventory.size())
 	{
-		std::cout << "Àß¸øµÈ ¾ÆÀÌÅÛ ¹øÈ£ÀÔ´Ï´Ù.\n";
+		std::cout << "ìž˜ëª»ëœ ì•„ì´í…œ ë²ˆí˜¸ìž…ë‹ˆë‹¤.\n";
 		return;
 	}
 
 	const auto& itemToSell = inventory[index];
 	int sellPrice = itemToSell->GetPrice() * 0.6;
 
-	std::cout << itemToSell->GetName() << "À» " << sellPrice << "°ñµå¿¡ ÆÇ¸ÅÇß½À´Ï´Ù.\n";
+	std::cout << itemToSell->GetName() << "ì„ " << sellPrice << "ê³¨ë“œì— íŒë§¤í–ˆìŠµë‹ˆë‹¤.\n";
 	player->AddGold(sellPrice);
 	player->RemoveItem(index);
 }
