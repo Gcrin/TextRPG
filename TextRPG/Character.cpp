@@ -21,12 +21,13 @@ Character& Character::GetInstance(const std::string& name)
 	return Instance;
 }
 
-
 void Character::DisplayStatus() const
 {
-	std::cout << "=========================================================\n";
-	std::cout << "레벨 : " << Level << ", 체력 : " << Health << "공격력 : " << Attack << '\n';
-	std::cout << "=========================================================\n";
+	std::cout << "===================================\n";
+	std::cout << "레벨 : " << Level << ", 체력 : " << Health << ", 공격력 : " << Attack << '\n';
+	std::cout << "===================================\n";
+	std::cout << "소지금 : " << Gold << "G, 경험치 : " << Experience << "/100\n";
+	std::cout << "===================================\n";
 }
 
 void Character::GainExperience(int amount)
@@ -36,7 +37,7 @@ void Character::GainExperience(int amount)
 	std::cout << "경험치 " << amount << "을 획득했다!\n";
 	Experience += amount;
 
-	if (Experience >= 100)
+	while (Level < 10 && Experience >= 100)
 	{
 		LevelUp();
 	}
@@ -52,7 +53,6 @@ void Character::LevelUp()
 
 	std::cout << "\n***** LEVEL UP! *****\n";
 	std::cout << "레벨 " << Level << "달성!\n";
-	DisplayStatus();
 }
 
 void Character::AddItem(std::unique_ptr<Item> item)
@@ -71,6 +71,7 @@ void Character::UseItem(int index)
 	}
 
 	Inventory[index]->Use(this);
+	RemoveItem(index);
 }
 
 void Character::RemoveItem(int index)
@@ -95,14 +96,14 @@ void Character::DisplayInventory() const
 	{
 		std::cout << "아이템" << i << " : " << Inventory[i]->GetName() << '\n';
 	}
-	std::cout << "================\n";
+	std::cout << "====================\n";
 }
 
-int Character::FindItemIndex(const std::string& itemName)
+int Character::FindItemIndex(ItemID id)
 {
 	for (int i = 0; i < Inventory.size(); i++)
 	{
-		if (Inventory[i]->GetName() == itemName)
+		if (Inventory[i] && Inventory[i]->GetId() == id)
 		{
 			return i;
 		}
@@ -112,6 +113,7 @@ int Character::FindItemIndex(const std::string& itemName)
 
 void Character::AddGold(int amount)
 {
+	std::cout << "골드 " << amount << "G을 획득했다!\n";
 	Gold += amount;
 }
 
@@ -131,7 +133,7 @@ void Character::IncreaseAttack(int amount)
 {
 	std::cout << "공격력 증가!\n";
 	Attack += amount;
-	std::cout << "현재 공격력 : " << GetAttack();
+	std::cout << "현재 공격력 : " << GetAttack() << '\n';
 }
 
 void Character::RestoreHealth(int amount)
@@ -139,7 +141,7 @@ void Character::RestoreHealth(int amount)
 	std::cout << "체력 회복!\n";
 	Health += amount;
 	Health = std::min(Health, MaxHealth);
-	std::cout << "현재 체력 : " << GetHealth();
+	std::cout << "현재 체력 : " << GetHealth() << '\n';
 }
 
 void Character::TakeDamage(int damage)

@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -36,7 +37,7 @@ public:
     void UseItem(int index);
     void RemoveItem(int index);
     void DisplayInventory() const;
-    int FindItemIndex(const std::string& itemName);
+    int FindItemIndex(ItemID id);
 
     void AddGold(int amount);
     bool SpendGold(int amount);
@@ -50,7 +51,7 @@ public:
     std::string GetName() const { return Name; }
     int GetLevel() const { return Level; }
     int GetHealth() const { return Health; }
-    int GetMaxHealth() const {return MaxHealth}
+    int GetMaxHealth() const { return MaxHealth;}
     int GetAttack() const { return Attack; }
     int GetGold() const { return Gold; }
     int GetExperience() const { return Experience; }
