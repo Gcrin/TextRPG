@@ -214,7 +214,6 @@ void GameManager::visitShop()
 
     while (true)
     {
-        printTitle("상점");
         shop.displayShop(*player);
         std::cout << "\n무엇을 하시겠습니까?\n"
             << "1. 아이템 구매\n"
@@ -253,10 +252,9 @@ void GameManager::visitShop()
         else if (input == 3)
         {
             std::cout << "상점에서 나왔습니다.\n";
+            system("cls");
             break;
         }
-
-        system("cls");
     }
 }
 
