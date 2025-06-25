@@ -16,7 +16,6 @@ void Shop::displayShop(Character& character) const
     std::cout << "\n==================== 상점 ====================\n";
     std::cout << "어서오세요! 무엇을 도와드릴까요?\n";
     std::cout << "보유 골드: " << character.getGold() << " Gold\n\n";
-
 }
 
 void Shop::buyItem(int itemIndex, Character& character)
@@ -37,6 +36,7 @@ void Shop::buyItem(int itemIndex, Character& character)
     }
     else
     {
+        system("cls");
         std::cout << "골드가 부족합니다.\n";
     }
 }
