@@ -20,7 +20,6 @@ void Shop::displayShop(Character& character) const
 
 void Shop::buyItem(int itemIndex, Character& character)
 {
-    displayShopItems();
     if (itemIndex < 1 || itemIndex > items.size())
     {
         std::cout << "잘못된 번호입니다.\n";
