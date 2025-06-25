@@ -221,12 +221,14 @@ void GameManager::visitShop()
             << "3. 상점 나가기\n";
 
         int input = getInputRangeInt(1, 3);
+        system("cls");
 
         if (input == 1)
         {
             shop.displayShopItems();
             std::cout << "구매할 아이템 번호를 선택하세요 (취소: 0): ";
             int buyInput = getInputRangeInt(0, shop.getItemCount());
+            system("cls");
             if (buyInput > 0)
             {
                 shop.buyItem(buyInput, *player);
@@ -243,6 +245,7 @@ void GameManager::visitShop()
                 player->displayInventory();
                 std::cout << "판매할 아이템 번호를 입력하세요 (취소: 0): ";
                 int sellInput = getInputRangeInt(0, player->getInventory().size());
+                system("cls");
                 if (sellInput > 0)
                 {
                     shop.sellItem(sellInput, *player);

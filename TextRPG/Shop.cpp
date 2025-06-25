@@ -36,7 +36,6 @@ void Shop::buyItem(int itemIndex, Character& character)
     }
     else
     {
-        system("cls");
         std::cout << "골드가 부족합니다.\n";
     }
 }
