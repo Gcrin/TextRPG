@@ -1,9 +1,18 @@
 #include "Monster.h"
 #include "AttackBoost.h"
 #include "HealthPotion.h"
+#include "Utils.h"
 
-Monster::Monster(std::string name, int health, int attack) : name(std::move(name)), currentHealth(health),
-                                                             attack(attack)
+Monster::Monster(std::string name, int playerLevel, float healthMultiplier, float attackMultiplier)
+    : name(std::move(name)),
+      currentHealth(Utils::getRandomInt(
+          static_cast<int>(playerLevel * 20 * healthMultiplier),
+          static_cast<int>(playerLevel * 30 * healthMultiplier)
+      )),
+      attack(Utils::getRandomInt(
+          static_cast<int>(playerLevel * 5 * attackMultiplier),
+          static_cast<int>(playerLevel * 10 * attackMultiplier)
+      ))
 {
 }
 
