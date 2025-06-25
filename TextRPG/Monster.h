@@ -41,10 +41,10 @@ public:
     }
 };
 
-class Troll : public Monster
+class Skeleton : public Monster
 {
 public:
-    Troll(int playerLevel) : Monster("트롤", playerLevel)
+    Skeleton(int playerLevel) : Monster("Skeleton", playerLevel)
     {
     }
 };
@@ -52,7 +52,7 @@ public:
 class Slime : public Monster
 {
 public:
-    Slime(int playerLevel) : Monster("Skeleton", playerLevel)
+    Slime(int playerLevel) : Monster("Slime", playerLevel)
     {
     }
 };
