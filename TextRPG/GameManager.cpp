@@ -296,18 +296,20 @@ int GameManager::getInputRangeInt(int min, int max) const
 
 bool GameManager::getInputYesNo() const
 {
-    char c;
+    std::string input;
     while (true)
     {
-        std::cin >> c;
+        std::getline(std::cin, input);
         system("cls");
-        c = std::tolower(c); // 대문자 입력받을 경우 소문자로 변경
-        if (c == 'y' || c == 'n')
+        if (input.length() == 1)
         {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            return (c == 'y');
+            char c = std::tolower(input[0]);
+            if (c == 'y' || c == 'n')
+            {
+                return (c == 'y');
+            }
         }
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
         std::cout << "잘못된 입력입니다. Y 또는 N을 입력해주세요: ";
     }
 }
