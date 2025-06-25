@@ -22,10 +22,10 @@ void GameManager::createPlayer()
         std::cout << "캐릭 이름을 입력해주세요: ";
         std::getline(std::cin, name);
 
-        if (name.empty() || name.find_first_not_of("\t\n\v\f\r") == std::string::npos)
+        if (name.empty() || name.find_first_of(" \t\n\v\f\r") != std::string::npos)
         {
             Utils::setConsoleColor(EColor::LightRed); // 빨강
-            std::cout << "\n[오류] 이름은 공백일 수 없습니다. 다시 입력해주세요.\n\n";
+            std::cout << "\n[오류] 이름에 공백을 사용할 수 없습니다. 다시 입력해주세요.\n\n";
             Utils::setConsoleColor(EColor::White); // 하양
         }
         else
@@ -33,7 +33,7 @@ void GameManager::createPlayer()
             break;
         }
     }
-    
+
     system("cls");
     player = std::make_unique<Character>(name);
 
